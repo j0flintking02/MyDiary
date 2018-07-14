@@ -15,6 +15,11 @@ html {
     font-family: myheartache;
 }
 
+a{
+    text-decoration: none;
+    color: palevioletred;
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -63,23 +68,6 @@ video {
     vertical-align: middle;
 }
 
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
 
 /* ==========================================================================
    main custom styles
