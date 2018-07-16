@@ -1,10 +1,10 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-@font-face{
-    font-family: myheartache;
+/* @font-face{
+    font-family: my;
     src: url(../fonts/SecretDiary.ttf);
-}
+} */
 
 
 
@@ -12,7 +12,7 @@ html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
-    font-family: myheartache;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 a{
