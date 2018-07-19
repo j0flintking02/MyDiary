@@ -1,7 +1,9 @@
-language: python 3.6
+language: python
+python:
+  -3.5
+  -3.6
 
-before_script:
--pip install flask unittest 
-
+install:
+  -pip install unittest
 script:
--api/app_test.py
+  -api/app_test.py
