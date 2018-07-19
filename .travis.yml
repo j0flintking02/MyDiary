@@ -1,0 +1,4 @@
+language: python 3.6
+
+script:
+-api/app_test.py
