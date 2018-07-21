@@ -1,4 +1,4 @@
-import utils
+# import utils
 from flask import Flask, jsonify, request, abort
 
 
@@ -27,8 +27,7 @@ def return_one(entry_id):
     if not isinstance(entry_id, int):
         raise ValueError("the value must be an int")
 
-    entry = utils.search_entry(entries, entry_id)
-    if entry is None:
+    if entry_id is None:
         abort(404)
 
     entry = [entry for entry in entries if entry['entry_id'] == entry_id]
@@ -50,8 +49,8 @@ def add_one():
 @app.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
 def edit_one(entry_id):
     """  end point for modifying the entries """
-    entry = utils.search_entry(entries, entry_id)
-    if entry is None:
+    
+    if entry_id is None:
         abort(404)
 
     entry = [entry for entry in entries if entry['entryId'] == entry_id]
@@ -62,8 +61,8 @@ def edit_one(entry_id):
 @app.route('/api/v1/entries/<int:entry_id>', methods=['Delete'])
 def delete_one(entry_id):
     """ end point for deleting an item """
-    entry = utils.search_entry(entries, entry_id)
-    if entry is None:
+    
+    if entry_id is None:
         abort(404)
 
     entry = [entry for entry in entries if entry['entry_id'] == entry_id]
