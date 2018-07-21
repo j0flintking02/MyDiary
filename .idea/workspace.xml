@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba2da5e8-376c-4ac6-8da2-07ab5a63bffe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/app_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="ba2da5e8-376c-4ac6-8da2-07ab5a63bffe" name="Default" comment="add the requirements.txt and fix the tests" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="60" column="42" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="42" />
+            <state relative-caret-position="621">
+              <caret line="79" lean-forward="true" selection-start-line="76" selection-end-line="79" />
             </state>
           </provider>
         </entry>
@@ -73,7 +69,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="793" />
     <option name="width" value="814" />
     <option name="height" value="877" />
@@ -95,6 +91,12 @@
               <item name="MyDiary" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyDiary" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyDiary" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyDiary" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -229,6 +231,14 @@
       <option name="presentableId" value="Default" />
       <updated>1532022572647</updated>
     </task>
+    <task id="LOCAL-00001" summary="add the requirements.txt and fix the tests">
+      <created>1532178488450</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1532178488450</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -265,7 +275,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -321,6 +330,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add the requirements.txt and fix the tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add the requirements.txt and fix the tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -433,8 +446,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="60" column="42" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="42" />
+        <state relative-caret-position="621">
+          <caret line="79" lean-forward="true" selection-start-line="76" selection-end-line="79" />
         </state>
       </provider>
     </entry>
