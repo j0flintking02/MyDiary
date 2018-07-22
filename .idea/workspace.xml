@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba2da5e8-376c-4ac6-8da2-07ab5a63bffe" name="Default" comment="add the requirements.txt and fix the tests" />
+    <list default="true" id="ba2da5e8-376c-4ac6-8da2-07ab5a63bffe" name="Default" comment="add the requirements.txt and fix the tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/app_test.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,36 +13,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/MyDiary$Unittests_for_api_app_test_MyTestCase_test_single_entry.coverage" NAME="Unittests for api.app_test.MyTestCase.test_single_entry Coverage Results" MODIFIED="1532177092946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MyDiary$Unittests_for_api_app_test_MyTestCase_test_single_entry.coverage" NAME="Unittests for api.app_test.MyTestCase.test_single_entry Coverage Results" MODIFIED="1532185176540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MyDiary$app.coverage" NAME="app Coverage Results" MODIFIED="1532174909963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
     <SUITE FILE_PATH="coverage/MyDiary$Unittests_for_api_app_test_MyTestCase_test_entry_list.coverage" NAME="Unittests for api.app_test.MyTestCase.test_entry_list Coverage Results" MODIFIED="1532175463172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MyDiary$Unittests_in_app_test_py.coverage" NAME="Unittests in app_test.py Coverage Results" MODIFIED="1532177279257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MyDiary$app_test.coverage" NAME="app_test Coverage Results" MODIFIED="1532177186410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
+    <SUITE FILE_PATH="coverage/MyDiary$Unittests_in_app_test_py.coverage" NAME="Unittests in app_test.py Coverage Results" MODIFIED="1532192888449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MyDiary$app_test.coverage" NAME="app_test Coverage Results" MODIFIED="1532185200472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/utils.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/app.py">
+      <file leaf-file-name="app_test.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/app_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="79" lean-forward="true" selection-start-line="76" selection-end-line="79" />
+            <state relative-caret-position="170">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app_test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/app_test.py">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="298">
+              <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -55,8 +67,8 @@
         <option value="$PROJECT_DIR$/api/test_return_one.py" />
         <option value="$PROJECT_DIR$/requiments.txt" />
         <option value="$PROJECT_DIR$/api/app.py" />
-        <option value="$PROJECT_DIR$/api/app_test.py" />
         <option value="$PROJECT_DIR$/requirments.txt" />
+        <option value="$PROJECT_DIR$/api/app_test.py" />
       </list>
     </option>
   </component>
@@ -69,7 +81,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="793" />
     <option name="width" value="814" />
     <option name="height" value="877" />
@@ -80,6 +92,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -102,13 +115,15 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="dat&#9;ACTION&#9;ActivateDatabaseToolWindow" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.SQL" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -242,18 +257,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_api_app_test_MyTestCase_test_single_entry - 2018.07.21 at 15h 30m 19s.xml">
-      <configuration name="Unittests for api.app_test.MyTestCase.test_single_entry" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_api_app_test_MyTestCase_test_single_entry - 2018.07.21 at 15h 31m 02s.xml">
-      <configuration name="Unittests for api.app_test.MyTestCase.test_single_entry" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_api_app_test_MyTestCase_test_single_entry - 2018.07.21 at 15h 35m 49s.xml">
-      <configuration name="Unittests for api.app_test.MyTestCase.test_single_entry" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_api_app_test_MyTestCase_test_single_entry - 2018.07.21 at 15h 36m 27s.xml">
-      <configuration name="Unittests for api.app_test.MyTestCase.test_single_entry" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_api_app_test_MyTestCase_test_single_entry - 2018.07.21 at 15h 37m 07s.xml">
       <configuration name="Unittests for api.app_test.MyTestCase.test_single_entry" configurationId="tests" />
     </history-entry>
@@ -272,6 +275,18 @@
     <history-entry file="Unittests_in_app_test_py - 2018.07.21 at 15h 48m 10s.xml">
       <configuration name="Unittests in app_test.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_for_api_app_test_MyTestCase_test_single_entry - 2018.07.21 at 17h 59m 41s.xml">
+      <configuration name="Unittests for api.app_test.MyTestCase.test_single_entry" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_app_test_py - 2018.07.21 at 18h 00m 13s.xml">
+      <configuration name="Unittests in app_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_app_test_py - 2018.07.21 at 18h 03m 01s.xml">
+      <configuration name="Unittests in app_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_app_test_py - 2018.07.21 at 20h 08m 11s.xml">
+      <configuration name="Unittests in app_test.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
@@ -283,7 +298,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3294423" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -341,6 +356,23 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/app_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="40" lean-forward="true" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/utils.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -351,13 +383,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requiments.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/requiments.txt" />
     <entry file="file://$PROJECT_DIR$/api/app_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -413,9 +439,6 @@
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/utils.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/venv/Lib/site-packages/more_itertools/tests/test_more.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -424,30 +447,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/test_return_one.py" />
-    <entry file="file://$PROJECT_DIR$/api/app_test.py">
+    <entry file="file://$PROJECT_DIR$/requiments.txt" />
+    <entry file="file://$PROJECT_DIR$/requirments.txt" />
+    <entry file="file://$PROJECT_DIR$/api/requirments.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requiments.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirments.txt">
+    <entry file="file://$PROJECT_DIR$/api/utils.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/api/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="79" lean-forward="true" selection-start-line="76" selection-end-line="79" />
+        <state relative-caret-position="298">
+          <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
