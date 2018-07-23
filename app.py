@@ -1,4 +1,3 @@
-# import utils
 from flask import Flask, jsonify, request, abort
 
 
@@ -37,33 +36,27 @@ def return_one(entry_id):
 @app.route('/api/v1/entries', methods=['POST'])
 def add_one():
     """ end point for adding items to the entries """
-    new_entry = dict(entryId=request.json["entryId"], title=request.json["title"],
-                     description=request.json["description"])
+    new_entry = {'entry_Id': request.json["entry_id"], 'title': request.json["title"],
+                 'description': request.json["description"]}
 
-    if not all(new_entry.get('entryId')):
-        pass
     entries.append(new_entry)
-    return jsonify({"entries": entries})
+    return jsonify({"message": "New entry added"})
 
 
 @app.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
 def edit_one(entry_id):
     """  end point for modifying the entries """
-    
-    if entry_id is None:
-        abort(404)
 
-    entry = [entry for entry in entries if entry['entryId'] == entry_id]
-    entry[0]['entryId'] = request.json['entryId']
+    entry = [entry for entry in entries if entry['entry_id'] == entry_id]
+    entry[0]['entry_id'] = request.json['entry_id']
+    entry[0]['title'] = request.json['title']
+    entry[0]['description'] = request.json['description']
     return jsonify(dict(entry=entry[0]))
 
 
 @app.route('/api/v1/entries/<int:entry_id>', methods=['Delete'])
 def delete_one(entry_id):
     """ end point for deleting an item """
-    
-    if entry_id is None:
-        abort(404)
 
     entry = [entry for entry in entries if entry['entry_id'] == entry_id]
     entries.remove(entry[0])

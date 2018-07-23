@@ -6,4 +6,4 @@ python:
 install:
   -pip install unittest
 script:
-  -api/app_test.py
+  -app_test.py
