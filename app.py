@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request, abort
 app = Flask(__name__)
 
 entries = [
-    {"entry_id": 1, "title": "jonathan in never land", "description": "lorem ipsum"},
+    {"entry_id": 1, "title": "jonathan in never land","description": "lorem ipsum"},
     {"entry_id": 2, "title": "jonathan in never land", "description": "lorem ipsum"},
     {"entry_id": 3, "title": "leader are made not born", "description": "lorem ipsum"},
     {"entry_id": 4, "title": "we are all special in every way", "description": "lorem ipsum"}]
@@ -36,8 +36,10 @@ def return_one(entry_id):
 @app.route('/api/v1/entries', methods=['POST'])
 def add_one():
     """ end point for adding items to the entries """
-    new_entry = {'entry_Id': request.json["entry_id"], 'title': request.json["title"],
-                 'description': request.json["description"]}
+    new_entry = {
+        'entry_Id': request.json["entry_id"],
+        'title': request.json["title"],
+        'description': request.json["description"]}
 
     entries.append(new_entry)
     return jsonify({"message": "New entry added"})
