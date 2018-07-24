@@ -24,13 +24,8 @@ def return_all():
 @app.route('/api/v1/entries/<int:entry_id>', methods=['GET'])
 def return_one(entry_id):
     """ end point for displaying a single item """
-    if not isinstance(entry_id, int):
-        raise ValueError("the value must be an int")
 
-    if entry_id is None:
-        abort(404)
-
-    entry = [entry for entry in entries if entry['entry_id'] == entry_id]
+    entry = [entry for entry in entries if entry["entry_id"] == entry_id]
     return jsonify({'entry': entry[0]})
 
 
