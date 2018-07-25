@@ -32,8 +32,9 @@ def return_one(entry_id):
 @app.route('/api/v1/entries', methods=['POST'])
 def add_one():
     """ end point for adding items to the entries """
+    next_id = len(entries)
     new_entry = {
-        'entry_Id': uuid.uuid4(),
+        'entry_Id': next_id+1,
         'date': request.json["date"],
         'title': request.json["title"],
         'description': request.json["description"]}
@@ -49,7 +50,6 @@ def edit_one(entry_id):
     """  end point for modifying the entries """
 
     entry = [entry for entry in entries if entry['entry_id'] == entry_id]
-    entry[0]['entry_id'] = request.json['entry_id']
     entry[0]['title'] = request.json['title']
     entry[0]['description'] = request.json['description']
     return jsonify(dict(entry=entry[0]))
