@@ -1,5 +1,4 @@
-from flask import jsonify, request, abort
-import uuid
+from flask import jsonify, request
 
 from api import app
 
@@ -33,14 +32,15 @@ def return_one(entry_id):
 def add_one():
     """ end point for adding items to the entries """
     next_id = len(entries)
+    new_id=int(next_id+1)
     new_entry = {
-        'entry_Id': next_id+1,
+        'entry_Id': new_id,
         'date': request.json["date"],
         'title': request.json["title"],
         'description': request.json["description"]}
 
     entries.append(new_entry)
-    return jsonify(dict(message="New entry added"),
+    return jsonify({'message': "New entry added"},
                    {"Status code": 200}
                    )
 
