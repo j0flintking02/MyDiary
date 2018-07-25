@@ -1,5 +1,5 @@
 ## Welcome to MyDiary app
-[![Build Status](https://travis-ci.org/j0flintking02/MyDiary.svg?branch=api)](https://travis-ci.org/j0flintking02/MyDiary) ![GitHub package version](https://img.shields.io/github/package-json/v/badges/shields.svg)
+[![Build Status](https://travis-ci.org/j0flintking02/MyDiary.svg?branch=api)](https://travis-ci.org/j0flintking02/MyDiary) ![GitHub package version](https://img.shields.io/github/package-json/v/badges/shields.svg)   
 
 these are the routes that are available
 

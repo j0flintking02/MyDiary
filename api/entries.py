@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify, request, make_response
 
 from api import app
 
@@ -25,7 +25,7 @@ def return_one(entry_id):
     """ end point for displaying a single item """
 
     entry = [entry for entry in entries if entry["entry_id"] == entry_id]
-    return jsonify({'entry': entry[0]})
+    return make_response(jsonify({'entry': entry[0]}))
 
 
 @app.route('/api/v1/entries', methods=['POST'])
@@ -34,15 +34,13 @@ def add_one():
     next_id = len(entries)
     new_id=int(next_id+1)
     new_entry = {
-        'entry_Id': new_id,
+        'entry_id': new_id,
         'date': request.json["date"],
         'title': request.json["title"],
         'description': request.json["description"]}
 
     entries.append(new_entry)
-    return jsonify({'message': "New entry added"},
-                   {"Status code": 200}
-                   )
+    return jsonify({'message': "New entry added"}),201
 
 
 @app.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])
