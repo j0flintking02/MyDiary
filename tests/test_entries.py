@@ -29,7 +29,6 @@ class MyTestCase(unittest.TestCase):
         resp = self.app.get('/api/v1/entries')
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(resp.content_type, 'application/json')
-
     def test_edit_one(self):
         """ tests for editing a single entry """
         resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id))

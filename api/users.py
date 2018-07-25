@@ -10,20 +10,7 @@ user_details = [
 
 
 @app.route('/api/v1/users', methods=['GET'])
-def return_all():
+def return_all_users():
     return jsonify({'details': user_details})
 
 
-@app.route('/api/v1/users', methods=['GET'])
-def return_all():
-    return jsonify({'details': user_details})
-
-
-@app.route('/api/v1/users', methods=['GET'])
-def return_all():
-    return jsonify({'details': user_details})
-
-
-@app.route('/api/v1/users', methods=['GET'])
-def return_all():
-    return jsonify({'details': user_details})
