@@ -27,7 +27,7 @@ class MyTestCase(unittest.TestCase):
     def test_add_one(self):
         """ tests for adding a single entry """
         resp = self.app.get('/api/v1/entries')
-        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content_type, 'application/json')
     def test_edit_one(self):
         """ tests for editing a single entry """
