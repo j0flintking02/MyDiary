@@ -10,6 +10,7 @@ def insert_new_user(conn, u_id, name, password):
     # close communication with the database
     cur.close()
     # close the connection
+    return "new data has been inserted"
 
 
 def get_all_user(conn):
@@ -26,13 +27,11 @@ def get_all_user(conn):
 
 def insert_new_entry(conn, new_date, title, description, author_id):
     """A function to create a new user to the database"""
-    sql = """INSERT INTO my_diary.public.entries(entry_date, entry_title,entry_description, author_id)
-          VALUES(%s,%s,%s,%s);"""
-
+    sql = """INSERT INTO my_diary.public.entries(entry_date,
+  entry_title,entry_description, author_id) VALUES(%s,%s,%s,%s);"""
     cur = conn.cursor()
     # make the query
     cur.execute(sql, (new_date, title, description, author_id))
-
     # commit the changes to the database
     conn.commit()
     # close communication with the database
@@ -44,7 +43,7 @@ def get_all_entries(conn, author_id):
     """A function to get a single user from the database"""
     sql = """SELECT * FROM my_diary.public.entries where author_id=%s;"""
     cur = conn.cursor()
-    cur.execute(sql,(author_id,))
+    cur.execute(sql, (author_id,))
     result = cur.fetchall()
     # close communication with the database
     cur.close()
@@ -65,8 +64,12 @@ def get_single_entry(conn, entry_id):
 
 
 def update_single_data(conn, title, description, entry_id):
+    """  this is for updating a data entry"""
     sql = """UPDATE entries SET entry_title = %s, entry_description= %s WHERE entry_id = %s;"""
     cur = conn.cursor()
     cur.execute(sql, (title, description, entry_id,))
     conn.commit()
     cur.close()
+
+
+

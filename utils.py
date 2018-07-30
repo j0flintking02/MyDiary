@@ -1,14 +1,16 @@
-from flask import jsonify, request, make_response
 from functools import wraps
-from api import app
+from flask import jsonify, request
 import jwt
+from api import app
 from config import db_connection as conn
-from db import insert_new_user, get_all_user
+from db import get_all_user
 
 
 def token_required(f):
+    """ creating a token decorator that is to be inserted to all end routes"""
     @wraps(f)
     def decorated(*args, **kwargs):
+        """function to return the user token """
         token = None
 
         if 'x-access-token' in request.headers:
@@ -24,11 +26,29 @@ def token_required(f):
                 user_data = {'user id': user[1], 'user name': user[2], 'user Password': user[3]}
                 output.append(user_data)
             # Check if the values passed through  exist in the database
-            logged_in_user = list(filter(lambda output: output['user id'] == data['user id'], output))
+            logged_in_user = list(filter(lambda output: output['user id'] == data['user id'],
+                                         output))
             current_user = logged_in_user[0]['user id']
-
         except:
             return jsonify({'message': 'invalid token'}), 401
         return f(current_user, *args, **kwargs)
 
     return decorated
+
+
+def entry(entries):
+    """A function to return a list entry objects"""
+    output = []
+    for entry in entries:
+        user_data = {' entry id': entry[1], 'title': entry[2], 'description': entry[3]}
+        output.append(user_data)
+    return output
+
+
+def new_user(users):
+    """A list to return the list of users from the database"""
+    output = []
+    for user in users:
+        user_data = {'user id': user[1], 'user name': user[2], 'user Password': user[3]}
+        output.append(user_data)
+    return output
