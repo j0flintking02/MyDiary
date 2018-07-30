@@ -2,8 +2,9 @@ from functools import wraps
 from flask import jsonify, request
 import jwt
 from api import app
-from config import db_connection as conn
-from db import get_all_user
+from db import Users
+
+user_model = Users()
 
 
 def token_required(f):
@@ -20,7 +21,8 @@ def token_required(f):
             return jsonify({'message': 'Token is missing'}), 401
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'])
-            users = get_all_user(conn)
+            print(data)
+            users = user_model.get_all_user()
             output = []
             for user in users:
                 user_data = {'user id': user[1], 'user name': user[2], 'user Password': user[3]}
@@ -30,7 +32,7 @@ def token_required(f):
                                          output))
             current_user = logged_in_user[0]['user id']
         except:
-            return jsonify({'message': 'invalid token'}), 401
+            return jsonify({'message': 'invalid token 1'}), 401
         return f(current_user, *args, **kwargs)
 
     return decorated

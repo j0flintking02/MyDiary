@@ -3,6 +3,10 @@
 
 these are the routes that are available
 
+# Requirements
+   - Python 3.6 or later
+   - postgres installed
+
 # Setting Up the Project
 Clone the repo
 ```
@@ -27,6 +31,11 @@ pip install -r requirements.txt
 run the application
 ```
 python run.py
+```
+# set up your database
+```postgresplsql
+CREATE DATABASE users;
+CREATE DATABASE entries;
 ```
 | End point                                            |   Function          |
 |------------------------------------------------------|---------------------|

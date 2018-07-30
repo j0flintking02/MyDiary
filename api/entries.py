@@ -1,9 +1,10 @@
 from flask import jsonify, request, make_response
 from utils import token_required, entry
-import db
-from config import db_connection as conn
+from db import Entries
 from api import app
 import datetime
+
+entry_model = Entries()
 
 
 @app.route('/')
@@ -14,7 +15,7 @@ def index():
 @app.route('/api/v1/entries', methods=['GET'])
 @token_required
 def return_all(current_user):
-    entries = db.get_all_entries(conn, author_id=current_user)
+    entries = entry_model.get_all_entries(author_id=current_user)
     output = entry(entries)
     return jsonify({'entries': output}), 200
 
@@ -23,7 +24,7 @@ def return_all(current_user):
 @token_required
 def return_one(current_user, entry_id):
     """ end point for displaying a single item """
-    entry_details = db.get_single_entry(conn, entry_id)
+    entry_details = entry_model.get_single_entry(entry_id)
     output = entry(entry_details)
     return make_response(jsonify({'entry': output}))
 
@@ -34,10 +35,12 @@ def add_one(current_user):
     """ end point for adding items to the entries """
     data = request.get_json()
     entry_date = datetime.datetime.today().strftime('%d-%m-%Y')
-    title_ = data['title']
-    description_ = data['description']
-    db.insert_new_entry(conn, new_date=entry_date, title=title_, description=description_,
-                        author_id=current_user)
+    title_ = str(data['title']).strip()
+    description_ = str(data['description']).strip()
+    if title_ is "" or description_ is "":
+        return jsonify({'message': " fields can not be empty"}), 404
+    entry_model.insert_new_entry(new_date=entry_date, title=title_, description=description_,
+                                 author_id=current_user)
     return jsonify({'message': "New entry added"}), 201
 
 
@@ -46,9 +49,8 @@ def add_one(current_user):
 def edit_one(current_user, entry_id):
     """  end point for modifying the entries """
     data = request.get_json()
-    db.update_single_data(conn, data['title'], data['description'], entry_id)
+    entry_model.update_single_data(data['title'], data['description'], entry_id)
     return jsonify(dict(message='entry updated'))
-
 
 # @app.route('/api/v1/entries/<int:entry_id>', methods=['Delete'])
 # def delete_one(entry_id):

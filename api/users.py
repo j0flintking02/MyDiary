@@ -1,13 +1,12 @@
 from flask import jsonify, request, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 from api import app
-import db
+from db import Users
 import utils
-from config import db_connection as conn
 import uuid
 import jwt
 import datetime
-
+user_model = Users()
 
 app.config['SECRET_KEY'] = 'thisissecret'
 
@@ -22,7 +21,7 @@ def sign_up_user():
     if name is not ' ' and password is not ' ':
         hashed_password = generate_password_hash(password, method='sha256')
         u_id = str(uuid.uuid4())
-        db.insert_new_user(conn, u_id=u_id, name=name, password=hashed_password)
+        user_model.insert_new_user(u_id=u_id, name=name, password=hashed_password)
         return jsonify({'message': "new user create"})
 
     return jsonify({'message': "Field must not be empty"})
@@ -31,7 +30,7 @@ def sign_up_user():
 @app.route('/api/v1/auth/login', methods=['GET'])
 def login_user():
     """login a user"""
-    users = db.get_all_user(conn)
+    users = user_model.get_all_user()
     output = utils.new_user(users)
     auth = request.authorization
 
@@ -42,6 +41,7 @@ def login_user():
 
     # Check if the values pass through  exist in the database
     check_user = list(filter(lambda output: output['user name'] == auth.username, output))
+    print(check_user)
 
     # check if the user exits in the database
     if not (check_user[0]['user name']):
