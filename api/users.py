@@ -15,6 +15,7 @@ app.config['SECRET_KEY'] = 'thisissecret'
 def sign_up_user():
     """add a new user"""
     data = request.get_json()
+    print(data)
     name = data['user_name']
     password = data['password']
     # check if the user entered all fields
@@ -22,7 +23,7 @@ def sign_up_user():
         hashed_password = generate_password_hash(password, method='sha256')
         u_id = str(uuid.uuid4())
         user_model.insert_new_user(u_id=u_id, name=name, password=hashed_password)
-        return jsonify({'message': "new user create"})
+        return jsonify({'message': "new user create"}), 201
 
     return jsonify({'message': "Field must not be empty"})
 
@@ -38,11 +39,8 @@ def login_user():
     if not auth or not auth.username or not auth.password:
         return make_response('FAILED TO VERIFY', 401,
                              {'WWW-Authenticate': 'Basic realm="User must login!"'})
-
     # Check if the values pass through  exist in the database
     check_user = list(filter(lambda output: output['user name'] == auth.username, output))
-    print(check_user)
-
     # check if the user exits in the database
     if not (check_user[0]['user name']):
         return make_response('FAILED TO VERIFY', 401,
