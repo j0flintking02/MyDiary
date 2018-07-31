@@ -15,7 +15,7 @@ def index():
 @app.route('/api/v1/entries', methods=['GET'])
 @token_required
 def return_all(current_user):
-    entries = entry_model.get_all_entries(author_id=current_user)
+    entries = entry_model.get_all_entries_by_id(author_id=current_user)
     output = entry(entries)
     return jsonify({'entries': output}), 200
 
@@ -34,15 +34,24 @@ def return_one(current_user, entry_id):
 def add_one(current_user):
     """ end point for adding items to the entries """
     data = request.get_json()
+    fields = ("title", "description")
+    for field in fields:
+        if field not in data:
+            return jsonify({'error': 'missing ' + field})
     entry_date = datetime.datetime.today().strftime('%d-%m-%Y')
     title_ = str(data['title']).strip()
     description_ = str(data['description']).strip()
     new_entry = dict(date=entry_date, title=title_, description=description_)
-    if title_ is "" or description_ is "":
-        return jsonify({'message': " fields can not be empty"}), 404
-    entry_model.insert_new_entry(new_date=entry_date, title=title_, description=description_,
-                                 author_id=current_user)
-    return jsonify({'entry': new_entry, 'message': "New entry added"}), 201
+    entries = entry_model.get_all_entries()
+    output = entry(entries)
+    check_entry = list(filter(lambda output: output['title'] == title_, output))
+    if check_entry is []:
+        if title_ is "" or description_ is "":
+            return jsonify({'message': " fields can not be empty"}), 404
+        entry_model.insert_new_entry(new_date=entry_date, title=title_, description=description_,
+                                     author_id=current_user)
+        return jsonify({'entry': check_entry, 'message': "New entry added"}), 201
+    return jsonify({'message ': 'title already exists'}), 401
 
 
 @app.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])

@@ -46,7 +46,14 @@ class Entries(Config):
         # commit the changes to the database
         self.conn.commit()
 
-    def get_all_entries(self, author_id):
+    def get_all_entries(self):
+        """A function to get a single user from the database"""
+        sql = """SELECT * FROM my_diary.public.entries;"""
+        self.cur.execute(sql)
+        result = self.cur.fetchall()
+        return result
+
+    def get_all_entries_by_id(self, author_id):
         """A function to get a single user from the database"""
         sql = """SELECT * FROM my_diary.public.entries where author_id=%s;"""
         self.cur.execute(sql, (author_id,))
