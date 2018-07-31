@@ -28,15 +28,17 @@ install all the dependence
 ```
 pip install -r requirements.txt
 ```
+# set up your database
+```postgresplsql
+CREATE DATABASE my_diary;
+CREATE DATABASE test_db;
+```
+
 run the application
 ```
 python run.py
 ```
-# set up your database
-```postgresplsql
-CREATE DATABASE users;
-CREATE DATABASE entries;
-```
+
 | End point                                            |   Function          |
 |------------------------------------------------------|---------------------|
 | '/api/v1/entries', methods=['GET']                   | Return all entries  |

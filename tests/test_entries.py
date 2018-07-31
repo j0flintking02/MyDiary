@@ -1,4 +1,5 @@
 import unittest
+import pytest
 import json
 from config import db_connection as conn
 from api import app
@@ -8,6 +9,7 @@ class MyTestCase(unittest.TestCase):
     new_user = [{'user_name': 'john', 'password': '1234'}]
 
     def setUp(self):
+        app.config['TESTING'] = True
         self.app = app.test_client()
         self.conn = conn
         self.cur = conn.cursor()
