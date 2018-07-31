@@ -45,18 +45,12 @@ class Entries(Config):
         self.cur.execute(sql, (new_date, title, description, author_id))
         # commit the changes to the database
         self.conn.commit()
-        # close communication with the database
-        # self.cur.close()
-        # close the connection
 
     def get_all_entries(self, author_id):
         """A function to get a single user from the database"""
         sql = """SELECT * FROM my_diary.public.entries where author_id=%s;"""
         self.cur.execute(sql, (author_id,))
         result = self.cur.fetchall()
-        # close communication with the database
-        # self.cur.close()
-        # close the connection
         return result
 
     def get_single_entry(self, entry_id):
@@ -64,9 +58,6 @@ class Entries(Config):
         sql = """SELECT * FROM my_diary.public.entries where entry_id= %s;"""
         self.cur.execute(sql, (entry_id,))
         result = self.cur.fetchall()
-        # close communication with the database
-        # self.cur.close()
-        # close the connection
         return result
 
     def update_single_data(self, title, description, entry_id):
@@ -74,7 +65,6 @@ class Entries(Config):
         sql = """UPDATE entries SET entry_title = %s, entry_description= %s WHERE entry_id = %s;"""
         self.cur.execute(sql, (title, description, entry_id,))
         self.conn.commit()
-        # self.cur.close()
 
 
 class Users(Config):
@@ -86,9 +76,6 @@ class Users(Config):
         sql = """SELECT * FROM my_diary.public.users;"""
         self.cur.execute(sql)
         result = self.cur.fetchall()
-        # close communication with the database
-        # self.conn.close()
-        # close the connection
         return result
 
     def insert_new_user(self, u_id, name, password):
@@ -97,9 +84,6 @@ class Users(Config):
         # make the query
         self.cur.execute(sql, (u_id, name, password))
         self.conn.commit()
-        # close communication with the database
-        # self.cur.close()
-        # close the connection
         return "new data has been inserted"
 
 

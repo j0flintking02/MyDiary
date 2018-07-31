@@ -27,7 +27,6 @@ class MyTestCase(unittest.TestCase):
 
     def test_login_user(self):
         resp = self.app.get('/api/v1/auth/login', data=json.dumps(dict(user_name="john", password="1234")))
-        # self.assertEqual(resp.status_code, 200)
 
     def test_entry_list(self):
         """tests for all entries in the data storage"""

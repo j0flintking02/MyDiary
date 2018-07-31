@@ -26,7 +26,7 @@ def return_one(current_user, entry_id):
     """ end point for displaying a single item """
     entry_details = entry_model.get_single_entry(entry_id)
     output = entry(entry_details)
-    return make_response(jsonify({'entry': output}))
+    return make_response(jsonify({'entry': output[0]}))
 
 
 @app.route('/api/v1/entries', methods=['POST'])
@@ -37,11 +37,12 @@ def add_one(current_user):
     entry_date = datetime.datetime.today().strftime('%d-%m-%Y')
     title_ = str(data['title']).strip()
     description_ = str(data['description']).strip()
+    new_entry = dict(date=entry_date, title=title_, description=description_)
     if title_ is "" or description_ is "":
         return jsonify({'message': " fields can not be empty"}), 404
     entry_model.insert_new_entry(new_date=entry_date, title=title_, description=description_,
                                  author_id=current_user)
-    return jsonify({'message': "New entry added"}), 201
+    return jsonify({'entry': new_entry, 'message': "New entry added"}), 201
 
 
 @app.route('/api/v1/entries/<int:entry_id>', methods=['PUT'])

@@ -43,7 +43,7 @@ def entry(entries):
     """A function to return a list entry objects"""
     output = []
     for entry in entries:
-        user_data = {' entry date': entry[1], 'title': entry[2], 'description': entry[3]}
+        user_data = {'entry id': entry[0], ' entry date': entry[1], 'title': entry[2], 'description': entry[3]}
         output.append(user_data)
     return output
 
