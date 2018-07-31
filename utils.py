@@ -4,6 +4,7 @@ import jwt
 from api import app
 from db import Users
 
+
 user_model = Users()
 
 

@@ -1,15 +1,46 @@
-from config import db_connection as conn
+import psycopg2
+from api import app
 
 
-class Entries:
+class Config:
     def __init__(self):
-        self.conn = conn
-        self.cur = self.conn.cursor()
+        if not app.config['TESTING']:
+            self.conn = psycopg2.connect(host='localhost', user='postgres',
+                                         password='root', dbname='my_diary')
+            self.cur = self.conn.cursor()
+            sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY, 
+            user_id VARCHAR(255) NOT NULL , user_name VARCHAR(255) NOT NULL, user_password text NOT NULL);"""
+
+            sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
+              entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
+              author_id VARCHAR(255) NOT NULL);"""
+            self.cur.execute(sql_create_tables_users)
+            self.cur.execute(sql_create_tables_entries)
+            self.conn.commit()
+
+        else:
+            self.conn = psycopg2.connect(host='localhost', user='postgres',
+                                         password='root', dbname='test_db')
+            self.cur = self.conn.cursor()
+            sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY, 
+               user_id VARCHAR(255) NOT NULL , user_name VARCHAR(255) NOT NULL, user_password text NOT NULL);"""
+
+            sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
+                 entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
+                 author_id VARCHAR(255) NOT NULL);"""
+            self.cur.execute(sql_create_tables_users)
+            self.cur.execute(sql_create_tables_entries)
+            self.conn.commit()
+
+
+class Entries(Config):
+    def __init__(self):
+        Config.__init__(self)
 
     def insert_new_entry(self, new_date, title, description, author_id):
         """A function to create a new user to the database"""
         sql = """INSERT INTO my_diary.public.entries(entry_date,
-        entry_title,entry_description, author_id) VALUES(%s,%s,%s,%s);"""
+            entry_title,entry_description, author_id) VALUES(%s,%s,%s,%s);"""
         # make the query
         self.cur.execute(sql, (new_date, title, description, author_id))
         # commit the changes to the database
@@ -46,10 +77,9 @@ class Entries:
         # self.cur.close()
 
 
-class Users:
+class Users(Config):
     def __init__(self):
-        self.conn = conn
-        self.cur = self.conn.cursor()
+        Config.__init__(self)
 
     def get_all_user(self):
         """A function to get a single user from the database"""
