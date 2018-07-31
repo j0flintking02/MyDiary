@@ -34,22 +34,30 @@ def return_one(current_user, entry_id):
 def add_one(current_user):
     """ end point for adding items to the entries """
     data = request.get_json()
+
+    # checking if all keys have been provided
     fields = ("title", "description")
     for field in fields:
         if field not in data:
             return jsonify({'error': 'missing ' + field})
+
     entry_date = datetime.datetime.today().strftime('%d-%m-%Y')
     title_ = str(data['title']).strip()
     description_ = str(data['description']).strip()
+
     new_entry = dict(date=entry_date, title=title_, description=description_)
     entries = entry_model.get_all_entries()
     output = entry(entries)
+
+    # checking if there is a duplicate title in the database
     check_entry = list(filter(lambda output: output['title'] == title_, output))
     if check_entry is []:
         if title_ is "" or description_ is "":
             return jsonify({'message': " fields can not be empty"}), 404
-        entry_model.insert_new_entry(new_date=entry_date, title=title_, description=description_,
-                                     author_id=current_user)
+        entry_model.insert_new_entry(new_date=entry_date, title=title_,
+                                     description=description_,
+                                     author_id=current_user
+                                     )
         return jsonify({'entry': check_entry, 'message': "New entry added"}), 201
     return jsonify({'message ': 'title already exists'}), 401
 
@@ -60,4 +68,6 @@ def edit_one(current_user, entry_id):
     """  end point for modifying the entries """
     data = request.get_json()
     entry_model.update_single_data(data['title'], data['description'], entry_id)
-    return jsonify(dict(message='entry updated'))
+    entries = entry_model.get_single_entry(entry_id)
+    output = entry(entries)
+    return jsonify(dict(output=output[0], message='entry updated'))
