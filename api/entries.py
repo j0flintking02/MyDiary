@@ -51,19 +51,3 @@ def edit_one(current_user, entry_id):
     data = request.get_json()
     entry_model.update_single_data(data['title'], data['description'], entry_id)
     return jsonify(dict(message='entry updated'))
-
-# @app.route('/api/v1/entries/<int:entry_id>', methods=['Delete'])
-# def delete_one(entry_id):
-#     """ end point for deleting an item """
-#
-#     entry = check_entry(entry_id)
-#     entries.remove(entry[0])
-#     return jsonify({'message': "deleted"})
-
-
-# def check_entry(entry_id):
-#     entry = []
-#     for entry in entries:
-#         if entry['entry_id'] == entry_id:
-#             entry.append(entry)
-#     return entry
