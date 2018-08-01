@@ -17,7 +17,7 @@ def sign_up_user():
     """add a new user"""
     data = request.get_json()
     print(data)
-    name = data['user_name']
+    name = data['username']
     password = data['password']
     # check if the user entered all fields
     if name is not ' ' and password is not ' ':
