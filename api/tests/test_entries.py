@@ -31,6 +31,10 @@ def login_user(username):
     return token.decode('UTF-8')
 
 
+def insert_test_data(date, title, description, author_id):
+    entry = entry_model.insert_new_entry(date, title, description, author_id)
+
+
 class MyTestCase(unittest.TestCase):
     new_user = [{'user_name': 'john', 'password': '1234'}]
 
@@ -88,7 +92,9 @@ class MyTestCase(unittest.TestCase):
         token = login_user('john')
         resp = self.app.post('/api/v1/entries', data=json.dumps(dict(title='home land',
                                                                      description='we all were born for greatness'
-                                                                     )), headers={'x-access-token': token},content_type="application/json")
+                                                                     )), headers={'x-access-token': token},
+                             content_type="application/json"
+                             )
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(resp.content_type, 'application/json')
 
