@@ -1,9 +1,33 @@
 import unittest
 import json
-from db import Config
+from db import Config, Users, Entries
 from api import app
+from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
+import utils
+import datetime
+import jwt
 
 config = Config()
+user_model = Users()
+
+
+def sign_up_user(username, password):
+    hashed_password = generate_password_hash(password, method='sha256')
+    u_id = str(uuid.uuid4())
+    user_model.insert_new_user(u_id=u_id, name=username, password=hashed_password)
+
+
+def login_user(username):
+    """login a user"""
+    users = user_model.get_all_user()
+    output = utils.new_user(users)
+    # Check if the values pass through  exist in the database
+    check_user = list(filter(lambda output: output['user name'] == username, output))
+    token = jwt.encode({'user id': check_user[0]['user id'],
+                        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                       app.config['SECRET_KEY'])
+    return token.decode('UTF-8')
 
 
 class MyTestCase(unittest.TestCase):
@@ -17,35 +41,67 @@ class MyTestCase(unittest.TestCase):
         self.entry_id = 1
 
     def test_sign_up_user(self):
-        resp = self.app.post('/api/v1/auth/signup', data=json.dumps(dict(user_name="john", password="1234")),
+        resp = self.app.post('/api/v1/auth/signup',
+                             data=json.dumps(dict(user_name="john", password="1234")),
                              content_type="application/json")
+        content = json.loads(resp.get_data())
+        self.assertEqual(content, dict(message="new user created"))
+
         self.assertEqual(resp.status_code, 201)
 
-    def test_index(self):
-        resp = self.app.get('/', data=json.dumps(dict(message="Welcome to the entry port")))
-        self.assertEqual(resp.status_code, 200)
+    def test_signup_validation(self):
+        resp = self.app.post('/api/v1/auth/signup',
+                             data=json.dumps(dict(user_name=" ", password=" ")),
+                             content_type="application/json")
+        content = json.loads(resp.get_data())
+        self.assertEqual(content, dict(message="Field must not be empty"))
 
     def test_login_user(self):
-        resp = self.app.get('/api/v1/auth/login', data=json.dumps(dict(user_name="john", password="1234")))
+        sign_up_user('john', '1234')
+        resp = self.app.post('/api/v1/auth/login', data={'username': 'john', 'password': '1234'})
+        # self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp.content_type, 'application/json')
 
     def test_entry_list(self):
         """tests for all entries in the data storage"""
-        resp = self.app.get('/api/v1/entries')
+        sign_up_user('john', '1234')
+        token = login_user('john')
+        resp = self.app.get('/api/v1/entries', headers={'x-access-token': token})
+        self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content_type, 'application/json')
 
     def test_single_entry(self):
         """ tests for a single entry """
-        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id))
+        sign_up_user('john', '1234')
+        token = login_user('john')
+        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id), headers={'x-access-token': token})
+        self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content_type, 'application/json')
 
-    def test_add_one(self):
-        """ tests for adding a single entry """
-        resp = self.app.get('/api/v1/entries')
-        self.assertEqual(resp.content_type, 'application/json')
+    # def test_add_one(self):
+    #     """ tests for adding a single entry """
+    #     sign_up_user('john', '1234')
+    #     token = login_user('john')
+    #     resp = self.app.post('/api/v1/entries', data=dict(title='home land',
+    #                                                       description='we all were born for greatness'
+    #                                                       ), headers={'x-access-token': token})
+    #     # self.assertEqual(resp.status_code, 201)
+    #     self.assertEqual(resp.content_type, 'application/json')
+
+    # def test_missing_field(self):
+    #     sign_up_user('john', '1234')
+    #     token = login_user('john')
+    #     resp = self.app.post('/api/v1/entries', data=dict(description='we all were born for greatness'
+    #                                                       ), headers={'x-access-token': token})
+    #     self.assertEqual(resp.content_type, 'application/json')
 
     def test_edit_one(self):
         """ tests for editing a single entry """
-        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id))
+        sign_up_user('john', '1234')
+        token = login_user('john')
+        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id), headers={'x-access-token': token})
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual()
         self.assertEqual(resp.content_type, 'application/json')
 
 
