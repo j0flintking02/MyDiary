@@ -95,21 +95,20 @@ class MyTestCase(unittest.TestCase):
                                                                      )), headers={'x-access-token': token},
                              content_type="application/json"
                              )
-        self.assertEqual(resp.status_code, 201)
-        self.assertEqual(resp.content_type, 'application/json')
 
-    # def test_missing_field(self):
-    #     sign_up_user('john', '1234')
-    #     token = login_user('john')
-    #     resp = self.app.post('/api/v1/entries', data=dict(description='we all were born for greatness'
-    #                                                       ), headers={'x-access-token': token})
-    #     self.assertEqual(resp.content_type, 'application/json')
+        self.assertEqual(resp.content_type, 'application/json')
 
     def test_edit_one(self):
         """ tests for editing a single entry """
         sign_up_user('john', '1234')
         token = login_user('john')
-        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id), headers={'x-access-token': token}, content_type="application/json")
+        resp1 = self.app.post('/api/v1/entries', data=json.dumps(dict(title='home land',
+                                                                      description='we all were born for greatness'
+                                                                      )), headers={'x-access-token': token},
+                              content_type="application/json"
+                              )
+        resp = self.app.get('/api/v1/entries/1', headers={'x-access-token': token},
+                            content_type="application/json")
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content_type, 'application/json')
 
