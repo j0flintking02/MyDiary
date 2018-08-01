@@ -17,7 +17,7 @@ before_script:
 
 # command to run tests
 script:
-  - nosetests -v --with-coverage --cover-package=api
+  - nosetests -v --with-coverage
 # command to run tests
 
 after_success:
