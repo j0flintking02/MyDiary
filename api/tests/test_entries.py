@@ -93,10 +93,10 @@ class MyTestCase(unittest.TestCase):
 
     def test_single_entry(self):
         """ tests for a single entry """
-        resp1 = self.app.post('/api/v1/auth/signup',
-                              data=json.dumps(dict(username="john", password="1234")),
-                              content_type="application/json"
-                              )
+        self.app.post('/api/v1/auth/signup',
+                      data=json.dumps(dict(username="john", password="1234")),
+                      content_type="application/json"
+                      )
 
         resp2 = self.app.post('/api/v1/auth/login', data=json.dumps({
             "username": "john",
@@ -133,7 +133,8 @@ class MyTestCase(unittest.TestCase):
         token = data['token']
         resp = self.app.post('/api/v1/entries', data=json.dumps(dict(title='home land',
                                                                      description='we all were born for greatness'
-                                                                     )), headers={'x-access-token': token},
+                                                                     )),
+                             headers={'x-access-token': token},
                              content_type="application/json"
                              )
 
@@ -152,18 +153,20 @@ class MyTestCase(unittest.TestCase):
         }), content_type="application/json")
         data = json.loads(resp_login.get_data())
         token = data['token']
-        resp3 = self.app.post('/api/v1/entries',
-                              data=json.dumps(dict(title='home land',
-                                                   description='we all were born for greatness'
-                                                   )), headers={'x-access-token': token},
-                              content_type="application/json"
-                              )
-        self.assertEqual(resp3.status_code, 201)
-        resp_edit = self.app.get('/api/v1/entries/1', data=json.dumps(dict(title='home land',
-                                                                           description='we all were born for greatness'
-                                                                           )), headers={'x-access-token': token},
+        self.app.post('/api/v1/entries',
+                      data=json.dumps(
+                          dict(title='home land',
+                               description='we all were born for greatness')),
+                      headers={'x-access-token': token},
+                      content_type="application/json"
+                      )
+        resp_edit = self.app.put('/api/v1/entries/1',
+                                 data=json.dumps(
+                                     dict(title='home land security',
+                                          description='we all were born for greatness')
+                                 ), headers={'x-access-token': token},
                                  content_type="application/json")
-        self.assertEqual(resp_edit.status_code, 201)
+        self.assertEqual(resp_edit.status_code, 200)
         self.assertEqual(resp_edit.content_type, 'application/json')
 
 
