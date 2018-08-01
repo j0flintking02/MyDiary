@@ -75,7 +75,10 @@ class MyTestCase(unittest.TestCase):
         """ tests for a single entry """
         sign_up_user('john', '1234')
         token = login_user('john')
-        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id), headers={'x-access-token': token}, content_type="application/json")
+        resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id),
+                            headers={'x-access-token': token},
+                            content_type="application/json"
+                            )
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content_type, 'application/json')
 

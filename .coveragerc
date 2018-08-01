@@ -1,0 +1,37 @@
+[run]
+ 
+[report]
+omit = venv/*
+        */asyncio/*
+        */concurrent/*
+        */click/*
+        */colorama/*
+        */jinja2/*
+        */markupsafe/*
+        */werkzeug/*
+        */flask/*
+        */ctypes/*
+        */itsdangerous.py 
+        */html/*
+        */cryptography/*
+        */jwt/*
+        */psycopg2/*
+        */multiprocessing/*
+        */decimal.py
+        */uuid.py
+        */numbers.py
+        */encodings/*
+        */hmac.py
+        */http/cookiejar.py       
+        */mimetypes.py                      
+        */stringprep.py
+        */six.py
+        */typing.py
+        */api/__init__.py 
+        */db.py
+        */utils.py
+          
+
+
+[html]
+directory = coverage_html
