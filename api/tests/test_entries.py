@@ -101,7 +101,6 @@ class MyTestCase(unittest.TestCase):
         token = login_user('john')
         resp = self.app.get('/api/v1/entries/{}'.format(self.entry_id), headers={'x-access-token': token})
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual()
         self.assertEqual(resp.content_type, 'application/json')
 
 
