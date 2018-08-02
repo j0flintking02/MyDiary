@@ -5,7 +5,6 @@ from api import app
 class Config:
     def __init__(self):
         if app.config['TESTING'] is not True:
-            print("APP")
             self.conn = psycopg2.connect(host='localhost', user='postgres',
                                          password='root', dbname='my_diary')
             self.cur = self.conn.cursor()
@@ -21,7 +20,6 @@ class Config:
             self.conn.commit()
 
         else:
-            print("testing")
             self.conn = psycopg2.connect(host='localhost', user='postgres',
                                          password='root', dbname='test_db')
             self.cur = self.conn.cursor()
@@ -31,14 +29,24 @@ class Config:
             sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
                  entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
                  author_id VARCHAR(255) NOT NULL);"""
-            sql = """INSERT INTO test_db.public.entries(entry_date,
-                                                            entry_title,entry_description, author_id) VALUES('1-08-18','Alice in never land',
-                                                            'Alice:How long is forever? White Rabbit:Sometimes, just one second.','9d3f8598-3be5-493c-b993-107486ef8844');"""
+            sql = """INSERT INTO entries(entry_date,entry_title,entry_description, author_id)
+            VALUES('1-08-18','Alice in never land','Alice:How long is forever? White Rabbit:Sometimes, just one second.',
+            '9d3f8598-3be5-493c-b993-107486ef8844');"""
 
             self.cur.execute(sql_create_tables_users)
             self.cur.execute(sql_create_tables_entries)
             self.cur.execute(sql)
             self.conn.commit()
+
+    def drop_users(self):
+        sql = """drop table users;"""
+        self.cur.execute(sql)
+        self.conn.commit()
+
+    def drop_entries(self):
+        sql = """drop table entries"""
+        self.cur.execute(sql)
+        self.conn.commit()
 
 
 class Entries(Config):
@@ -47,7 +55,7 @@ class Entries(Config):
 
     def insert_new_entry(self, new_date, title, description, author_id):
         """A function to create a new user to the database"""
-        sql = """INSERT INTO my_diary.public.entries(entry_date,
+        sql = """INSERT INTO entries(entry_date,
             entry_title,entry_description, author_id) VALUES(%s,%s,%s,%s);"""
         # make the query
         self.cur.execute(sql, (new_date, title, description, author_id))
@@ -56,21 +64,21 @@ class Entries(Config):
 
     def get_all_entries(self):
         """A function to get a single user from the database"""
-        sql = """SELECT * FROM my_diary.public.entries;"""
+        sql = """SELECT * FROM entries;"""
         self.cur.execute(sql)
         result = self.cur.fetchall()
         return result
 
     def get_all_entries_by_id(self, author_id):
         """A function to get a single user from the database"""
-        sql = """SELECT * FROM my_diary.public.entries where author_id=%s;"""
+        sql = """SELECT * FROM entries where author_id=%s;"""
         self.cur.execute(sql, (author_id,))
         result = self.cur.fetchall()
         return result
 
     def get_single_entry(self, entry_id):
         """A function to get a single entry from the database"""
-        sql = """SELECT * FROM my_diary.public.entries where entry_id= %s;"""
+        sql = """SELECT * FROM entries where entry_id= %s;"""
         self.cur.execute(sql, (entry_id,))
         result = self.cur.fetchall()
         return result
@@ -88,14 +96,14 @@ class Users(Config):
 
     def get_all_user(self):
         """A function to get a single user from the database"""
-        sql = """SELECT * FROM my_diary.public.users;"""
+        sql = """SELECT * FROM users;"""
         self.cur.execute(sql)
         result = self.cur.fetchall()
         return result
 
     def insert_new_user(self, u_id, name, password):
         """A function to create a new user to the database"""
-        sql = """INSERT INTO my_diary.public.users(user_id, user_name,user_password)VALUES(%s,%s,%s);"""
+        sql = """INSERT INTO users(user_id, user_name,user_password)VALUES(%s,%s,%s);"""
         # make the query
         self.cur.execute(sql, (u_id, name, password))
         self.conn.commit()

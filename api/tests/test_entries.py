@@ -1,10 +1,7 @@
 import unittest
 import json
-from db import Config, Users, Entries
+from db import Config
 from api import app
-
-
-
 
 
 class MyTestCase(unittest.TestCase):
@@ -18,7 +15,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_sign_up_user(self):
         resp = self.app.post('/api/v1/auth/signup',
-                             data=json.dumps(dict(username="john", password="1234")),
+                             data=json.dumps(dict(username="flint", password="1234")),
                              content_type="application/json")
         content = json.loads(resp.get_data())
         self.assertEqual(content, dict(message="new user created"))
@@ -34,12 +31,12 @@ class MyTestCase(unittest.TestCase):
 
     def test_login_user(self):
         resp1 = self.app.post('/api/v1/auth/signup',
-                              data=json.dumps(dict(username="john", password="1234")),
+                              data=json.dumps(dict(username="king", password="1234")),
                               content_type="application/json"
                               )
 
         resp = self.app.post('/api/v1/auth/login', data=json.dumps({
-            "username": "john",
+            "username": "king",
             "password": "1234"
         }), content_type="application/json")
         self.assertEqual(resp.status_code, 200)
@@ -48,12 +45,12 @@ class MyTestCase(unittest.TestCase):
     def test_entry_list(self):
         """tests for all entries in the data storage"""
         resp1 = self.app.post('/api/v1/auth/signup',
-                              data=json.dumps(dict(username="john", password="1234")),
+                              data=json.dumps(dict(username="jovan", password="1234")),
                               content_type="application/json"
                               )
 
         resp2 = self.app.post('/api/v1/auth/login', data=json.dumps({
-            "username": "john",
+            "username": "jovan",
             "password": "1234"
         }), content_type="application/json")
         data = json.loads(resp2.get_data())
@@ -65,12 +62,12 @@ class MyTestCase(unittest.TestCase):
     def test_single_entry(self):
         """ tests for a single entry """
         self.app.post('/api/v1/auth/signup',
-                      data=json.dumps(dict(username="john", password="1234")),
+                      data=json.dumps(dict(username="jonathan", password="1234")),
                       content_type="application/json"
                       )
 
         resp2 = self.app.post('/api/v1/auth/login', data=json.dumps({
-            "username": "john",
+            "username": "jonathan",
             "password": "1234"
         }), content_type="application/json")
         data = json.loads(resp2.get_data())
@@ -92,12 +89,12 @@ class MyTestCase(unittest.TestCase):
     def test_add_one(self):
         """ tests for adding a single entry """
         resp1 = self.app.post('/api/v1/auth/signup',
-                              data=json.dumps(dict(username="john", password="1234")),
+                              data=json.dumps(dict(username="jorem", password="1234")),
                               content_type="application/json"
                               )
 
         resp2 = self.app.post('/api/v1/auth/login', data=json.dumps({
-            "username": "john",
+            "username": "jorem",
             "password": "1234"
         }), content_type="application/json")
         data = json.loads(resp2.get_data())
@@ -114,12 +111,12 @@ class MyTestCase(unittest.TestCase):
     def test_edit_one(self):
         """ tests for editing a single entry """
         resp_signup = self.app.post('/api/v1/auth/signup',
-                                    data=json.dumps(dict(username="john", password="1234")),
+                                    data=json.dumps(dict(username="aurugai", password="1234")),
                                     content_type="application/json"
                                     )
         self.assertEqual(resp_signup.status_code, 201)
         resp_login = self.app.post('/api/v1/auth/login', data=json.dumps({
-            "username": "john",
+            "username": "aurugai",
             "password": "1234"
         }), content_type="application/json")
         data = json.loads(resp_login.get_data())
@@ -139,6 +136,7 @@ class MyTestCase(unittest.TestCase):
                                  content_type="application/json")
         self.assertEqual(resp_edit.status_code, 200)
         self.assertEqual(resp_edit.content_type, 'application/json')
+
 
 
 if __name__ == '__main__':
