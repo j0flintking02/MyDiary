@@ -3,37 +3,8 @@ import json
 from db import Config, Users, Entries
 from api import app
 
-# from werkzeug.security import generate_password_hash, check_password_hash
-# import uuid
-# import utils
-# import datetime
-# import jwt
-
-config = Config()
-user_model = Users()
-entry_model = Entries()
 
 
-# def sign_up_user(username, password):
-#     hashed_password = generate_password_hash(password, method='sha256')
-#     u_id = str(uuid.uuid4())
-#     user_model.insert_new_user(u_id=u_id, name=username, password=hashed_password)
-#
-#
-# def login_user(username):
-#     """login a user"""
-#     users = user_model.get_all_user()
-#     output = utils.new_user(users)
-#     # Check if the values pass through  exist in the database
-#     check_user = list(filter(lambda output: output['user name'] == username, output))
-#     token = jwt.encode({'user id': check_user[0]['user id'],
-#                         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
-#                        app.config['SECRET_KEY'])
-#     return token.decode('UTF-8')
-
-
-# def insert_test_data(date, title, description, author_id):
-#     entry = entry_model.insert_new_entry(date, title, description, author_id)
 
 
 class MyTestCase(unittest.TestCase):
@@ -41,9 +12,9 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self):
         app.config['TESTING'] = True
+        config = Config()
+        self.cur = config.cur
         self.app = app.test_client()
-        self.conn = config.conn
-        self.cur = config.conn.cursor()
 
     def test_sign_up_user(self):
         resp = self.app.post('/api/v1/auth/signup',
