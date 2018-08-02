@@ -4,7 +4,7 @@ from api import app
 
 class Config:
     def __init__(self):
-        if not app.config['TESTING']:
+        if app.config['TESTING'] is not True:
             self.conn = psycopg2.connect(host='localhost', user='postgres',
                                          password='root', dbname='my_diary')
             self.cur = self.conn.cursor()
@@ -14,8 +14,13 @@ class Config:
             sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
               entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
               author_id VARCHAR(255) NOT NULL);"""
+            sql = """INSERT INTO my_diary.public.entries(entry_date,
+                                                entry_title,entry_description, author_id) VALUES('1-08-18','Alice in never land',
+                                                'Alice:How long is forever? White Rabbit:Sometimes, just one second.','9d3f8598-3be5-493c-b993-107486ef8844');"""
+
             self.cur.execute(sql_create_tables_users)
             self.cur.execute(sql_create_tables_entries)
+            self.cur.execute(sql)
             self.conn.commit()
 
         else:
@@ -28,8 +33,10 @@ class Config:
             sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
                  entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
                  author_id VARCHAR(255) NOT NULL);"""
+
             self.cur.execute(sql_create_tables_users)
             self.cur.execute(sql_create_tables_entries)
+
             self.conn.commit()
 
 
