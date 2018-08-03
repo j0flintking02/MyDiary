@@ -30,7 +30,18 @@ omit = venv/*
         */api/__init__.py 
         */db.py
         */utils.py
-          
+        */urllib3/*
+        */yaml/*
+        */requests/*
+        */jsonschema/*
+        */idna/*
+        */flasgger/*
+        */chardet/*
+        */http/*
+        */cgi.py
+        */_bootlocale.py
+        */certifi/*
+        */mistune.py
 
 
 [html]

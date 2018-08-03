@@ -22,7 +22,6 @@ def token_required(f):
             return jsonify({'message': 'Token is missing'}), 401
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'])
-            print(data)
             users = user_model.get_all_user()
             output = []
             for user in users:
@@ -43,7 +42,7 @@ def entry(entries):
     """A function to return a list entry objects"""
     output = []
     for entry in entries:
-        user_data = {'entry id': entry[0], ' entry date': entry[1], 'title': entry[2], 'description': entry[3]}
+        user_data = {'entry id': entry[0], 'entry date': entry[1], 'title': entry[2], 'description': entry[3]}
         output.append(user_data)
     return output
 
