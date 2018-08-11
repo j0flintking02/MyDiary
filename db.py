@@ -1,5 +1,6 @@
 import psycopg2
 from api import app
+import os
 
 
 class Config:
