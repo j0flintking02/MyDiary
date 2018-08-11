@@ -57,7 +57,7 @@ def sign_up_user():
         else:
             return jsonify({'message': 'you can not have symbols for a name'}), 400
 
-    return jsonify({'message': "Field must not be empty"})
+    return jsonify({'message': "Field must not be empty"}), 404
 
 
 @app.route('/api/v1/auth/login', methods=['POST'])

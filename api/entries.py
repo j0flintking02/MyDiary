@@ -56,7 +56,8 @@ def return_all(current_user):
                 entries:
                   type: array
             examples:
-              entries: [{"description": "some stuff", "entry date": "02-08-2018", "entry id": 1,"title": "this is a test"}]
+              entries: [{"description": "some stuff", "entry date": "02-08-2018",
+                        "entry id": 1,"title": "this is a test"}]
 
         """
     entries = entry_model.get_all_entries_by_id(author_id=current_user)
@@ -89,7 +90,7 @@ def return_one(current_user, entry_id):
               entry_id:
                 type: array
                 items:
-                  $ref: '#/definitions/Entry'
+                  $ref: '#/definitions/entry'
           entry:
             type: string
         responses:
@@ -105,7 +106,7 @@ def return_one(current_user, entry_id):
         output = entry(entry_details)
         return make_response(jsonify({'entry': output[0]}))
     except IndexError:
-        return make_response(jsonify({'message': 'the entry you are trying to access does not exist'}))
+        return make_response(jsonify({'message': 'the entry you are trying to access does not exist'})), 401
 
 
 @app.route('/api/v1/entries', methods=['POST'])
@@ -138,7 +139,7 @@ def add_one(current_user):
     fields = ("title", "description")
     for field in fields:
         if field not in data:
-            return jsonify({'error': 'missing ' + field})
+            return jsonify({'error': 'missing ' + field}), 404
 
     # needed variables for the adding the a new entry
     entry_date = datetime.datetime.today().strftime('%d-%m-%Y')
@@ -198,6 +199,6 @@ def edit_one(current_user, entry_id):
     # checking if the entry is being edited on the same day
     if check_entry is not []:
         entry_model.update_single_data(data['title'], data['description'], entry_id)
-        return jsonify(dict(output=output[0], message='entry updated'))
+        return jsonify(dict(output=output[0], message='entry updated')), 201
     else:
         return jsonify(dict(message='you can only edit an entry on the day it was created'))

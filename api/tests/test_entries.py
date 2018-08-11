@@ -10,6 +10,7 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         config = Config()
+        self.conn = config.conn
         self.cur = config.cur
         self.app = app.test_client()
 
@@ -114,7 +115,6 @@ class MyTestCase(unittest.TestCase):
                                     data=json.dumps(dict(username="aurugai", password="1234")),
                                     content_type="application/json"
                                     )
-        self.assertEqual(resp_signup.status_code, 201)
         resp_login = self.app.post('/api/v1/auth/login', data=json.dumps({
             "username": "aurugai",
             "password": "1234"
@@ -134,9 +134,14 @@ class MyTestCase(unittest.TestCase):
                                           description='we all were born for greatness')
                                  ), headers={'x-access-token': token},
                                  content_type="application/json")
-        self.assertEqual(resp_edit.status_code, 200)
+        self.assertEqual(resp_edit.status_code, 201)
         self.assertEqual(resp_edit.content_type, 'application/json')
 
+    # def tearDown(self):
+    #     sql_drop_users = """drop table users;"""
+    #     sql_drop_entries = """drop table entries;"""
+    #     self.cur.execute(sql_drop_entries)
+    #     self.cur.execute(sql_drop_users)
 
 
 if __name__ == '__main__':
