@@ -1,0 +1,15 @@
+.vscode/*
+! .vscode/setting.json
+
+/venv/*
+
+
+!.gitignore
+!.coveragerc
+!.coveragerc
+!.idea/MyDiary.iml
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/workspace.xml
+/api/test/.pytest_cache/*
