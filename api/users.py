@@ -48,7 +48,6 @@ def sign_up_user():
 
             # check if the username already exits
             check_user = list(filter(lambda output: output['user name'] == name, output))
-            print(check_user)
             if check_user == []:
                 user_model.insert_new_user(u_id=u_id, name=name, password=hashed_password)
                 return jsonify({'message': "new user created"}), 201
