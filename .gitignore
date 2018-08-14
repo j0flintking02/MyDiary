@@ -3,14 +3,14 @@
 
 /venv/*
 
-api/__pycache__/*
-api/tests/__pycache__
-api/__pycache__/*
+!.coveragerc
+!.coveragerc
 !.idea/MyDiary.iml
 !.idea/misc.xml
 !.idea/modules.xml
 !.idea/vcs.xml
 !.idea/workspace.xml
 /api/test/.pytest_cache/*
-.pytest_cache/*
-__pycache__/
+api/__pycache__/__init__.cpython-36.pyc
+api/__pycache__/entries.cpython-36.pyc
+__pycache__
