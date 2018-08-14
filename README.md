@@ -1,4 +1,5 @@
 ## Welcome to MyDiary app
+
 [![Build Status](https://travis-ci.org/j0flintking02/MyDiary.svg?branch=newFeature)](https://travis-ci.org/j0flintking02/MyDiary) ![GitHub package version](https://img.shields.io/github/package-json/v/badges/shields.svg) [![Coverage Status](https://coveralls.io/repos/github/j0flintking02/MyDiary/badge.svg?branch=newFeature)](https://coveralls.io/github/j0flintking02/MyDiary?branch=newFeature)   
 
 These are the routes that are available

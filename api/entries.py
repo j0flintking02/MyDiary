@@ -6,7 +6,6 @@ import datetime
 
 entry_model = Entries()
 
-
 @app.route('/')
 def index():
     return jsonify({'message': "Welcome to the entry port"})
@@ -202,3 +201,4 @@ def edit_one(current_user, entry_id):
         return jsonify(dict(output=output[0], message='entry updated')), 201
     else:
         return jsonify(dict(message='you can only edit an entry on the day it was created'))
+

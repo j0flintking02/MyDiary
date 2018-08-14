@@ -2,6 +2,7 @@
 ! .vscode/setting.json
 
 /venv/*
+
 !.coveragerc
 !.coveragerc
 !.idea/MyDiary.iml
