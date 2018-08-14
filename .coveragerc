@@ -1,7 +1,7 @@
 [run]
  
 [report]
-omit = venv/*
+omit =  venv/*
         */asyncio/*
         */concurrent/*
         */click/*
@@ -42,7 +42,7 @@ omit = venv/*
         */_bootlocale.py
         */certifi/*
         */mistune.py
-
+        */flask_cors/*
 
 [html]
 directory = coverage_html
