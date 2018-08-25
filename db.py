@@ -6,13 +6,13 @@ import os
 class Config:
     def __init__(self):
         if app.config['TESTING'] is not True:
-            DATABASE_URL = os.environ['DATABASE_URL']
-            self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+            self.conn = psycopg2.connect(host='localhost', user='postgres',
+                                         password='root', dbname='my_diary')
             self.cur = self.conn.cursor()
-            sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY, 
+            sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY,
             user_id VARCHAR(255) NOT NULL , user_name VARCHAR(255) NOT NULL, user_password text NOT NULL);"""
 
-            sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
+            sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY ,
               entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
               author_id VARCHAR(255) NOT NULL);"""
 
@@ -24,10 +24,10 @@ class Config:
             self.conn = psycopg2.connect(host='localhost', user='postgres',
                                          password='root', dbname='test_db')
             self.cur = self.conn.cursor()
-            sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY, 
+            sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY,
                user_id VARCHAR(255) NOT NULL , user_name VARCHAR(255) NOT NULL, user_password text NOT NULL);"""
 
-            sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY , 
+            sql_create_tables_entries = """ CREATE TABLE IF NOT EXISTS entries(entry_id SERIAL NOT NULL  PRIMARY KEY ,
                  entry_date VARCHAR(255) NOT NULL , entry_title VARCHAR(255) NOT NULL , entry_description text NOT NULL,
                  author_id VARCHAR(255) NOT NULL);"""
             sql = """INSERT INTO entries(entry_date,entry_title,entry_description, author_id)
@@ -109,5 +109,3 @@ class Users(Config):
         self.cur.execute(sql, (u_id, name, password))
         self.conn.commit()
         return "new data has been inserted"
-
-
