@@ -1,16 +1,15 @@
-.vscode/*
+
 ! .vscode/setting.json
-
+!.coveragerc
+!.coveragerc
+.vscode/*
 /venv/*
-
-!.coveragerc
-!.coveragerc
-!.idea/MyDiary.iml
-!.idea/misc.xml
-!.idea/modules.xml
-!.idea/vcs.xml
-!.idea/workspace.xml
+.idea/
+.pytest_cache/
 /api/test/.pytest_cache/*
-api/__pycache__/__init__.cpython-36.pyc
-api/__pycache__/entries.cpython-36.pyc
+api/__pycache__/
 __pycache__
+downloadfile.htm
+
+
+
