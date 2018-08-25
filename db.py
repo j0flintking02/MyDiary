@@ -6,8 +6,8 @@ import os
 class Config:
     def __init__(self):
         if app.config['TESTING'] is not True:
-            self.conn = psycopg2.connect(host='localhost', user='postgres',
-                                         password='root', dbname='my_diary')
+            DATABASE_URL = os.environ['DATABASE_URL']
+            self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
             self.cur = self.conn.cursor()
             sql_create_tables_users = """ CREATE  TABLE IF NOT EXISTS users(user_no SERIAL NOT NULL PRIMARY KEY,
             user_id VARCHAR(255) NOT NULL , user_name VARCHAR(255) NOT NULL, user_password text NOT NULL);"""
